@@ -1,0 +1,13 @@
+---
+- name: Uninstall NGINX server
+  hosts: web-server
+  become: true
+  tasks: 
+    - name: Stop nginx server before uninstalling it
+      service:
+        name: nginx
+        state: stopped
+    - name: Ensure NGINX is unistalled
+      yum:
+        name: nginx
+        state: absent
